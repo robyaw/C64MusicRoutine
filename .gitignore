@@ -1,1 +1,9 @@
+## CBM PRG Studio ignores
+
+# Ignore backup folder
 */bak/
+
+# Ignore files generated on build
+*.tmp
+*.prg
+*.dmp
