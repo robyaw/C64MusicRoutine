@@ -7,3 +7,6 @@
 *.tmp
 *.prg
 *.dmp
+
+# C64XE debugger
+*.dbg
