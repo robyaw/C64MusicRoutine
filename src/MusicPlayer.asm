@@ -122,25 +122,31 @@ ColorRAM            = $D800
 ;-------------------------------------------------------
 
 ; Ghost Registers
-*=$3000
-Pulse_Lo_Ghost      byte    000, 000
-Pulse_Hi_Ghost      byte    000, 000
-Control_Ghost       byte    000, 000
+Pulse_Lo_Ghost      = $10
+Pulse_Hi_Ghost      = $13
+Freq_Lo_Ghost       = $16
+Freq_Hi_Ghost       = $19
+Control_Ghost       = $1c
+Note_Base           = $1f
 
 *=$2000
 
 ; Notes jump table
 Note_Lo             byte    <Note_C_0$, <Note_Cs0$, <Note_D_0$, <Note_Ds0$, <Note_E_0$, <Note_F_0$, <Note_Fs0$, <Note_G_0$, <Note_Gs0$, <Note_A_0$, <Note_As0$, <Note_B_0$, <Note_C_1$, <Note_Cs1$, <Note_D_1$, <Note_Ds1$, <Note_E_1$, <Note_F_1$, <Note_Fs1$, <Note_G_1$, <Note_Gs1$, <Note_A_1$, <Note_As1$, <Note_B_1$, <Note_C_2$, <Note_Cs2$, <Note_D_2$, <Note_Ds2$, <Note_E_2$, <Note_F_2$, <Note_Fs2$, <Note_G_2$, <Note_Gs2$, <Note_A_2$, <Note_As2$, <Note_B_2$, <Note_C_3$, <Note_Cs3$, <Note_D_3$, <Note_Ds3$, <Note_E_3$, <Note_F_3$, <Note_Fs3$, <Note_G_3$, <Note_Gs3$, <Note_A_3$, <Note_As3$, <Note_B_3$, <Note_C_4$, <Note_Cs4$, <Note_D_4$, <Note_Ds4$, <Note_E_4$, <Note_F_4$, <Note_Fs4$, <Note_G_4$, <Note_Gs4$, <Note_A_4$, <Note_As4$, <Note_B_4$, <Note_C_5$, <Note_Cs5$, <Note_D_5$, <Note_Ds5$, <Note_E_5$, <Note_F_5$, <Note_Fs5$, <Note_G_5$, <Note_Gs5$, <Note_A_5$, <Note_As5$, <Note_B_5$, <Note_C_6$, <Note_Cs6$, <Note_D_6$, <Note_Ds6$, <Note_E_6$, <Note_F_6$, <Note_Fs6$, <Note_G_6$, <Note_Gs6$, <Note_A_6$, <Note_As6$, <Note_B_6$, <Note_C_7$, <Note_Cs7$, <Note_D_7$, <Note_Ds7$, <Note_E_7$, <Note_F_7$, <Note_Fs7$, <Note_G_7$, <Note_Gs7$, <Note_A_7$, <Note_As7$
 Note_Hi             byte    >Note_C_0$, >Note_Cs0$, >Note_D_0$, >Note_Ds0$, >Note_E_0$, >Note_F_0$, >Note_Fs0$, >Note_G_0$, >Note_Gs0$, >Note_A_0$, >Note_As0$, >Note_B_0$, >Note_C_1$, >Note_Cs1$, >Note_D_1$, >Note_Ds1$, >Note_E_1$, >Note_F_1$, >Note_Fs1$, >Note_G_1$, >Note_Gs1$, >Note_A_1$, >Note_As1$, >Note_B_1$, >Note_C_2$, >Note_Cs2$, >Note_D_2$, >Note_Ds2$, >Note_E_2$, >Note_F_2$, >Note_Fs2$, >Note_G_2$, >Note_Gs2$, >Note_A_2$, >Note_As2$, >Note_B_2$, >Note_C_3$, >Note_Cs3$, >Note_D_3$, >Note_Ds3$, >Note_E_3$, >Note_F_3$, >Note_Fs3$, >Note_G_3$, >Note_Gs3$, >Note_A_3$, >Note_As3$, >Note_B_3$, >Note_C_4$, >Note_Cs4$, >Note_D_4$, >Note_Ds4$, >Note_E_4$, >Note_F_4$, >Note_Fs4$, >Note_G_4$, >Note_Gs4$, >Note_A_4$, >Note_As4$, >Note_B_4$, >Note_C_5$, >Note_Cs5$, >Note_D_5$, >Note_Ds5$, >Note_E_5$, >Note_F_5$, >Note_Fs5$, >Note_G_5$, >Note_Gs5$, >Note_A_5$, >Note_As5$, >Note_B_5$, >Note_C_6$, >Note_Cs6$, >Note_D_6$, >Note_Ds6$, >Note_E_6$, >Note_F_6$, >Note_Fs6$, >Note_G_6$, >Note_Gs6$, >Note_A_6$, >Note_As6$, >Note_B_6$, >Note_C_7$, >Note_Cs7$, >Note_D_7$, >Note_Ds7$, >Note_E_7$, >Note_F_7$, >Note_Fs7$, >Note_G_7$, >Note_Gs7$, >Note_A_7$, >Note_As7$
-; Song Data
-Song1_S1_Notes      byte    043, 050, 048, 046, 045, 043, 048, 048, 050, $ff
-Song1_S1_Length     byte    030, 035, 020, 020, 030, 040, 020, 010, 020, $ff
-Song1_S2_Notes      byte    031,           $fe, $fe,                     $ff
-Song1_S2_Length     byte    090,           020, 100,                     $ff
+; Song Data: C4 = 049
+Song1_S1_Notes      byte    044, 044, 051, 051, 047, 044, 047, 044, 047, 047, 046, 044, 047, 049, 051, 047, 046, 044, 047, 049, 051, 047, 046, 044, 047, 043, 046, 044, $ff
+Song1_S1_Length     byte    020, 020, 020, 020, 040, 040, 020, 020, 020, 020, 040, 100, 020, 020, 040, 020, 020, 040, 020, 020, 040, 020, 020, 040, 050, 050, 050, 200, $ff
+Song1_S2_Notes      byte    039,                037, 050,      048,                                    $ff
+Song1_S2_Length     byte    080,                020, 080,      100,                                    $ff
 ; Control Variables
 Note_Num            byte    000, 000
 Note_Cnt            byte    000, 000
-
+S1_Sustain          byte    004, 072
+S1_Release          byte    000, 000
+Pulse_Lo_Table      byte    002, 078
+Pulse_Hi_Table      byte    008, 004
+Pulse_Sweep_Table   byte    160, 040
 
 ;-------------------------------------------------------
 ; Program Start
@@ -152,7 +158,8 @@ Note_Cnt            byte    000, 000
 ; set screen
                     LDY     #$00                        
                     STY     $D021                       
-                    STY     $D020                       
+                    STY     $D020    
+                   
                     LDA     #$07                        
                     LDX     #040                        
 
@@ -165,7 +172,7 @@ Loop_SetBG          TAY
                     BNE     SetBG                       
                     INY
 SetBG               LDA     #$01
-                    STA     ColorRAM,X
+                    STA     ColorRAM,X                  
                     TYA
                     STA     ColorRAM+040,X              
                     STA     ColorRAM+080,X              
@@ -192,89 +199,115 @@ SetBG               LDA     #$01
                     STA     ColorRAM+920,X              
                     STA     ColorRAM+960,X              
                     DEX
-                    BPL     Loop_SetBG                        
-
-;-------------------------------------------------------
-                    LDY     #%00000101                  ; SET VOLUME
-                    STY     SID_Volume                  
-                    LDY     #%00100001                  
-                    STY     V1_Attack_Decay             
-                    STY     V2_Attack_Decay             
-                    LDY     #%01001010                  
-                    STY     V1_Sustain_Release          
-                    STY     V2_Sustain_Release          
-                    LDY     #012                        
-                    LDX     #000                        
-                    STY     V1_Pulse_Lo                 
-                    STY     Pulse_Lo_Ghost+000          
-                    INX
-                    STY     V2_Pulse_Lo                 
-                    STY     Pulse_Lo_Ghost+001          
-                    DEX
-                    LDY     #008                        
-                    STY     V1_Pulse_Hi                 
-                    STY     Pulse_Hi_Ghost+000          
-                    INX
-                    STY     V2_Pulse_Hi                 
-                    STY     Pulse_Hi_Ghost+001          
-
-Set_Voice           LDA     #000                        ; Set note count to 0 (unrolled)
-                    STA     Note_Num
-                    STA     Note_Num+1  
-
-                    LDA     Song1_S2_Length             ; Set note lengths (unrolled)
-                    STA     Note_Cnt+1      
-                    LDA     Song1_S1_Length          
-                    STA     Note_Cnt                  
+                    BPL     Loop_SetBG   
+                    LDA     #001
+                    STA     ColorRAM+040 
+                    STA     ColorRAM+041 
+                    STA     ColorRAM+042 
+                    STA     ColorRAM+043 
                     
-                    LDX     Song1_S2_Notes              ; Set notes (unrolled)
-                    LDA     Note_Lo,X                   
-                    STA     V2_Freq_Lo                  
-                    LDA     Note_Hi,X                   
-                    STA     V2_Freq_Hi                  
-                    
-                    LDX     Song1_S1_Notes          
-                    LDA     Note_Lo,X                   
-                    STA     V1_Freq_Lo                  
-                    LDA     Note_Hi,X                   
-                    STA     V1_Freq_Hi                                               
-
-Set_Control         LDY     #%00010001                  
-                    STY     Control_Ghost               
-                    STY     V1_Control                  
-
-                    LDY     #%01000001                  
-                    STY     Control_Ghost               
-                    STY     V2_Control                  
+           
 
 Init                LDA     #%01111111
                     STA     $DC0D                       ;"SWITCH OFF" INTERRUPTS SIGNALS FROM CIA-1
                     STA     $DD0D                       ;"SWITCH OFF" INTERRUPTS SIGNALS FROM CIA-2
-                    
+
                     AND     $D011                       ; SET THE RASTER LINE NUMBER WHERE INTERRUPT SHOULD OCCUR
                     STA     $D011                       ; [$D011 bit 7] (0 * 255) + [$D012] 048 = line 48
-                    LDA     #048                        
-                    STA     $D012     
-                    
+                    LDA     #020                        
+                    STA     $D012                       
+
                     LDA     $DC0D                       ; by reading this two registers we negate any pending CIA irqs.
                     LDA     $DD0D                       ; if we don't do this, a pending CIA irq might occur after we finish setting up our irq.
                                                         ; we don't want that to happen.
-             
-                    LDA     #$35                        ; turn off BASIC ROM and KERNAL: http://sta.c64.org/cbm64mem.html
-                    STA     $01     
 
-                    LDA     #<IRQ_PlayMusic             ; Set the intterupt address
-                    STA     $FFFE                       
-                    LDA     #>IRQ_PlayMusic                      
-                    STA     $FFFF                      
+                    LDA     #$35                        ; turn off BASIC ROM and KERNAL: http://sta.c64.org/cbm64mem.html
+                    STA     $01                         
+
+;-------------------------------------------------------
+
+Set_Lookup          LDA     #<Song1_S1_Length
+                    STA     Note_Base                   
+                    LDA     #>Song1_S1_Length
+                    STA     Note_Base+001               
+                    LDA     #<Song1_S2_Length
+                    STA     Note_Base+002                
+                    LDA     #>Song1_S2_Length
+                    STA     Note_Base+003
+
+Set_SID             LDY     #%00000101                  ; SET VOLUME
+                    STY     SID_Volume                  
                     
+                    LDY     #%00100001      
+                    STY     V1_Attack_Decay    
+                    LDY     #%11101011                 
+                    STY     V1_Sustain_Release            
+                    
+                    LDY     #%00001000                
+                    STY     V2_Attack_Decay             
+                    LDY     #%00101010          
+                    STY     V2_Sustain_Release     
+
+                    LDY     #017                         
+                    STY     V1_Pulse_Lo                 
+                    STY     Pulse_Lo_Ghost              
+                    STY     V2_Pulse_Lo                 
+                    STY     Pulse_Lo_Ghost+001          
+                    LDY     #006                        
+                    STY     V1_Pulse_Hi                 
+                    STY     Pulse_Hi_Ghost              
+                    STY     V2_Pulse_Hi                 
+                    STY     Pulse_Hi_Ghost+001          
+
+Set_Voice           LDA     #000                        ; Set note count to 0 (unrolled)
+                    STA     Note_Num                    
+                    STA     Note_Num+1                  
+
+                    LDA     Song1_S2_Length             ; Set note lengths (unrolled)
+                    STA     Note_Cnt+1       
+                    LDA     Song1_S1_Length             
+                    STA     Note_Cnt     
+                    SEC
+                    SBC     S1_Sustain,X                        
+                    STA     S1_Release
+
+                    LDX     Song1_S2_Notes              ; Set notes (unrolled)
+                    LDA     Note_Lo,X                   
+                    STA     Freq_Lo_Ghost+1                  
+                    STA     V2_Freq_Lo                  
+                    LDA     Note_Hi,X                   
+                    STA     V2_Freq_Hi                 
+                    STA     Freq_Hi_Ghost+1               
+
+                    LDX     Song1_S1_Notes              
+                    LDA     Note_Lo,X                   
+                    STA     V1_Freq_Lo               
+                    STA     Freq_Lo_Ghost             
+                    LDA     Note_Hi,X                   
+                    STA     V1_Freq_Hi                
+                    STA     Freq_Hi_Ghost            
+
+Set_Control         LDY     #%01000001
+                    STY     Control_Ghost               
+                    STY     V1_Control                  
+
+                    LDY     #%00011001                  
+                    STY     Control_Ghost+001               
+                    STY     V2_Control                  
+                        
+
+Set_IRQ             LDA     #<IRQ_PlayMusic             ; Set the intterupt address
+                    STA     $FFFE                       
+                    LDA     #>IRQ_PlayMusic             
+                    STA     $FFFF                       
+
                     LDA     #%00000001                  
                     STA     $D01A                       ;ENABLE RASTER INTERRUPT SIGNALS FROM VIC
 
                     CLI                                 ; enable maskable interrupts again
-                    
+
 WAIT                JMP     WAIT                        ; INITIALIZATION DONE - just loop and let IRQs do the rest...
-                    
+
 
 ; D415   54293               Filter Cutoff Frequency: Low-Nybble (Bits 2-0)
 ; D416   54294               Filter Cutoff Frequency: High-Byte
@@ -292,132 +325,188 @@ WAIT                JMP     WAIT                        ; INITIALIZATION DONE - 
 ;                     4      Select Filter Low-Pass Mode: 1 = On
 ;                     3-0    Select Output Volume: 0-15
 
-                    LDA     #%00000000                  
+                    LDA     #%00000111                  
                     STA     $D415                       
 
-                    LDA     #%00111100                  
+                    LDA     #%11111111                  
                     STA     $D416                       
 
-                    LDA     #%01000011                  
+                    LDA     #%11111101   
                     STA     $D417                       
 
-                    LDA     #%00100001                  
-                    STA     $D418                       
+                    LDA     #%00100101  
+                    ORA     SID_Volume
+                    STA     SID_Volume                      
 
-IRQ_ChangeBorder    INC     $D020                       ; Changing the border colour gives a visual of how much raster time is being used
-                    LDA     #<IRQ_PlayMusic                      
+IRQ_ChangeBorder    INC     $D020 
+                    LDA     #<IRQ_PlayMusic             
                     STA     $FFFE                       
-                    LDA     #>IRQ_PlayMusic                      
-                    STA     $FFFF             
-          
-                    LDA     ColorRAM+040      
-                    LDX     #040                        
-Loop_Scroll_Text    TAY
-                    INY
-                    TYA
-                    AND     #%00001111                  
-                    BNE     Scroll_Text                      
-                    INY
-                    TYA
-Scroll_Text         STA     ColorRAM+040,X
-                    DEX
-                    BPL     Loop_Scroll_Text                       
+                    LDA     #>IRQ_PlayMusic             
+                    STA     $FFFF        
+               
+                    LDX     #005                       
+Loop_Next_char      LDA     ColorRAM+040,X               
+                    STA     ColorRAM+039,X                  
+                    INX
+                    CPX     #036                     
+                    BNE     Loop_Next_char              
+                    CLC
+                    ADC     #001 
+                    AND     #%00001111      
+                    BNE     End_Next_Char           
+                    CLC
+                    ADC     #001  
+End_Next_Char       STA     ColorRAM+039,X   
+                    JMP     Start_of_Voices
 
+IRQ_PlayMusic       INC     $D020                       ; Changing the border colour gives a visual of how much raster time is being used
 
-IRQ_PlayMusic       INC     $D020
+Start_of_Voices     DEC     Note_Cnt                    ; Unrolled note countdown
+                    DEC     Note_Cnt+1                  
                     
-                    DEC     Note_Cnt                    ; Unrolled note countdown
-                    DEC     Note_Cnt+1                 
+                    LDA     Note_Cnt
+                    STA     $0400 
+                    LDA     Note_Cnt+1
+                    STA     $0400+040                      
 
-                    LDX     #000                        ; Loop V2, V1
-Check_Note          LDA     Note_Cnt,X                
-
-                    STA     $0400    
+                    LDX     #002                       ; Loop V2, V1
+Start_of_Voice          
+                    LDA     Note_Cnt,X
                     
-                    CMP     #000
+                    CMP     #000                        
                     BEQ     ChangeNote                  ; if 0, change note
-                    ;CMP     #020                        
-                    ;BMI     PulseChange                 ; if ?? 20, change pulse....
-                       
-                    LDA     Control_Ghost,X             
+                    CMP     S1_Release,X
+                    BEQ     fader               
+                    JMP     PulseChange                 ; if ?? 20, change pulse....
+
+fader               LDA     Control_Ghost,X             
                     AND     #%11111110                  ; Fade note out
-                    STA     V1_Control                  ; TO-DO - Set notes for right voice (use zero page?)
-                    STA     Control_Ghost,X             
-                    DEX                     
-                    BPL     Check_Note                  ; loop
-                    JMP     PulseChange                        
+                    STA     Control_Ghost,X                  
+                    JMP     PulseChange                
 
 ChangeNote          INC     Note_Num,X
-                    LDA     Note_Num,X   
-                    TAY               
-                    LDA     Song1_S1_Notes,Y            ; TO-DO - Set notes for right voice
-                    
-                    STX     $0401    
-                    STA     $0402    
-                    STY     $0403      
-                    
-                    CPY     #$ff                        ; #$ff is "loop track" marker in note data
-                    BNE     ChangeNote2                    
-                    
-                    INC     $D021
-                    LDY     #$00                        ; if told, loop back to start of voice info
-                    
+                    LDY     Note_Num,X                  ; Get note index in Y
+
+                    CPX     #001                        
+                    BEQ     s2 
+                    CPX     #000                        
+                    BEQ     s1       
+s2                  LDA     Song1_S2_Notes,Y            ; TO-DO - Set notes for right voice    
+                    STA     $0401+040            
+                    JMP     cn
+s1                  LDA     Song1_S1_Notes,Y            ; TO-DO - Set notes for right voice   
+                    STA     $0401                       
+                    JMP     cn
+                               
+cn                  
+                    CMP     #$ff                        ; #$ff is "loop track" marker in note data
+                    BNE     ChangeNote2                 
+                     
+                    LDA     #$00                        ; if told, loop back to start of voice info
+                    STA     Note_Num,X                  
+                    TAY
+
 ChangeNote2         LDA     #<IRQ_ChangeBorder
                     STA     $FFFE                       
-                    LDA     #>IRQ_ChangeBorder                       
+                    LDA     #>IRQ_ChangeBorder          
                     STA     $FFFF                       
-                    
-                    ; A = ??, X = Voice index, Y = Note_Num index
-                                   
-                    LDA     Song1_S1_Length,Y           
-                    STA     Note_Cnt,X                                      
-                    LDA     Song1_S1_Notes,Y 
-                    STA     Note_Num,X                  
+                                 
 
-                    TAY                   
-                    LDA     Note_Lo,Y                 
-                    STA     V1_Freq_Lo                  
-                    LDA     Note_Hi,Y                   
-                    STA     V1_Freq_Hi                  
-                    LDA     #023                        
-                    STA     V1_Pulse_Lo                 
-                    STA     Pulse_Lo_Ghost,X               
-                    LDA     #$08                        
-                    STA     V1_Pulse_Hi                 
-                    STA     Pulse_Hi_Ghost,X              
-                    LDA     Control_Ghost,X              
-                    ORA     #%00000001                  
-                    STA     V1_Control                  
-                    STA     Control_Ghost,X              
-                    
-                    ; end of loop
-                    DEX                     
-                    BPL     Check_Note                  ; loop
-             
-                    JMP     RTIMusic                    
-
-PulseChange         AND     #%00000010
-                    BNE     PulseUp                     
-PulseDown           LDA     Pulse_Lo_Ghost,X
+                    CPX     #001                        
+                    BEQ     s22 
+                    CPX     #000                        
+                    BEQ     s12 
+s22                 LDA     Song1_S2_Length,Y            ; TO-DO - Set notes for right voice   
+                    STY     $0402+040
+                    STA     $0403+040           
+                    JMP     cn2
+s12                 LDA     Song1_S1_Length,Y           ; TO-DO - Set notes for right voice            
+                    STY     $0402
+                    STA     $0403            
+                                                        ; A = ??, X = Voice index, Y = Note_Num index
+cn2                 STA     Note_Cnt,X     
                     SEC
-                    SBC     #$40                        
-                    STA     Pulse_Lo_Ghost,X             
-                    STA     V1_Pulse_Lo   
+                    SBC     S1_Sustain,X                
+                    STA     S1_Release,X
 
-                    DEX                     
-                    BMI     RTIMusic                    ; loop  
-                    JMP     Check_Note                    
+                    CPX     #001                        
+                    BEQ     s23 
+                    CPX     #000                        
+                    BEQ     s13 
+s23                 LDA     Song1_S2_Notes,Y            ; TO-DO - Set notes for right voice   
+                    JMP     cn3
+s13                 LDA     Song1_S1_Notes,Y             ; TO-DO - Set notes for right voice   
+   
+cn3                 TAY                    
+                    LDA     Note_Lo,Y                   
+                    STA     Freq_Lo_Ghost,X                  
+                    LDA     Note_Hi,Y                   
+                    STA     Freq_Hi_Ghost,X                  
+                    LDA     Pulse_Lo_Table,X                       
+                    STA     Pulse_Lo_Ghost,X            
+                    LDA     Pulse_Hi_Table,X
+                    STA     Pulse_Hi_Ghost,X    
+        
+                    LDA     Control_Ghost,X             
+                    ORA     #%00000001                  
+                    STA     Control_Ghost,X       
+                    JMP     End_of_Voice
 
-PulseUp             LDA     Pulse_Hi_Ghost,X
-                    CLC
-                    ADC     #$20                        
+PulseChange         LDA     Note_Cnt,X
+                    AND     #%00000001                  
+                    TAY
+                    LDA     Pulse_Hi_Ghost,X            
+                    CPY     #001
+                    BNE     PulseUp                     
+PulseDown           SEC
+                    SBC     Pulse_Sweep_Table,X                
+                    STA     Pulse_Hi_Ghost,X     
+                    JMP     End_of_Voice
+
+PulseUp             CLC
+                    ADC     Pulse_Sweep_Table,X                     
                     STA     Pulse_Hi_Ghost,X            
-                    STA     V1_Pulse_Hi                 
-                    
-                    DEX                     
-                    BMI     RTIMusic                    ; loop        
-                    JMP     Check_Note                          
 
-RTIMusic            ASL     $D019                       ;"Acknowledge" the interrupt by clearing the VIC's interrupt flag.
-                    DEC     $D020
-                    RTI                  
+End_of_Voice        DEX
+                    BMI     RTIMusic                    ; loop
+                    JMP     Start_of_Voice                  
+
+RTIMusic            
+                    LDA     Control_Ghost
+                    STA     V1_Control      
+                    LDA     Pulse_Hi_Ghost
+                    STA     V1_Pulse_Hi            
+                    LDA     Pulse_Lo_Ghost
+                    STA     V1_Pulse_Lo            
+                    LDA     Freq_Lo_Ghost
+                    STA     V1_Freq_Lo             
+                    LDA     Freq_Hi_Ghost
+                    STA     V1_Freq_Hi    
+                    
+                    LDA     Control_Ghost+001
+                    STA     V2_Control     
+                    LDA     Pulse_Hi_Ghost+001
+                    STA     V2_Pulse_Hi        
+                    LDA     Pulse_Lo_Ghost+001
+                    STA     V2_Pulse_Lo           
+                    LDA     Freq_Lo_Ghost+001
+                    STA     V2_Freq_Lo             
+                    LDA     Freq_Hi_Ghost+001
+                    STA     V2_Freq_Hi                  
+                    
+                    LDA     #%00000001                  
+                    STA     $D415                       
+
+                    LDA     #%00001001                  
+                    STA     $D416                       
+
+                    LDA     #%11111101              
+                    STA     $D417                    
+
+                    LDA     #%00011101  
+                    ORA     SID_Volume
+                    STA     SID_Volume          
+                    
+                    ASL     $D019                       ;"Acknowledge" the interrupt by clearing the VIC's interrupt flag.
+                    DEC     $D020                       
+                    RTI
